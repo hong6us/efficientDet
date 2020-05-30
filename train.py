@@ -29,16 +29,17 @@ from torch.utils.data import DataLoader
 
 from models.efficientdet import EfficientDet
 from models.losses import FocalLoss
-from datasets import VOCDetection, CocoDataset, get_augumentation, detection_collate, Resizer, Normalizer, Augmenter, collater
+from datasets import VOCDetection, get_augumentation, detection_collate, Resizer, Normalizer, Augmenter, collater
 from utils import EFFICIENTDET, get_state_dict
-from eval import evaluate, evaluate_coco
+from eval import evaluate
+
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 parser.add_argument('--dataset', default='VOC', choices=['VOC', 'COCO'],
                     type=str, help='VOC or COCO')
 parser.add_argument(
     '--dataset_root',
-    default='/root/data/VOCdevkit/',
+    default='C:\\Users\\Owner\\EfficientDet.Pytorch\\VOCdevkit',
     help='Dataset root directory path [/root/data/VOCdevkit/, /root/data/coco/]')
 parser.add_argument('--network', default='efficientdet-d0', type=str,
                     help='efficientdet-[d0, d1, ..]')
@@ -51,7 +52,7 @@ parser.add_argument('--batch_size', default=32, type=int,
                     help='Batch size for training')
 parser.add_argument('--num_class', default=20, type=int,
                     help='Number of class used in model')
-parser.add_argument('--device', default=[0, 1], type=list,
+parser.add_argument('--device', default=[0,1], type=list,
                     help='Use CUDA to train model')
 parser.add_argument('--grad_accumulation_steps', default=1, type=int,
                     help='Number of gradient accumulation steps')
@@ -118,7 +119,8 @@ def train(train_loader, model, scheduler, optimizer, epoch, args):
             optimizer.zero_grad()
 
         total_loss.append(loss.item())
-        if(iteration % 300 == 0):
+#         if(iteration % 300 == 0): put back later
+        if (True):
             print('{} iteration: training ...'.format(iteration))
             ans = {
                 'epoch': epoch,

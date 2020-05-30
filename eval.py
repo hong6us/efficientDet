@@ -6,10 +6,9 @@ import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
 from tqdm import tqdm
-from pycocotools.cocoeval import COCOeval
 import json
 
-from datasets import (Augmenter, CocoDataset, Normalizer,
+from datasets import (Augmenter, Normalizer,
                       Resizer, VOCDetection, collater, detection_collate,
                       get_augumentation)
 from models.efficientdet import EfficientDet
