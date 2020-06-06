@@ -119,7 +119,7 @@ def train(train_loader, model, scheduler, optimizer, epoch, args):
             optimizer.zero_grad()
 
         total_loss.append(loss.item())
-        if(iteration % 10 == 0): put back later
+        if(iteration % 10 == 0): 
             print('{} iteration: training ...'.format(iteration))
             ans = {
                 'epoch': epoch,
