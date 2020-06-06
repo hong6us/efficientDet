@@ -119,8 +119,7 @@ def train(train_loader, model, scheduler, optimizer, epoch, args):
             optimizer.zero_grad()
 
         total_loss.append(loss.item())
-#         if(iteration % 300 == 0): put back later
-        if (True):
+        if(iteration % 10 == 0): put back later
             print('{} iteration: training ...'.format(iteration))
             ans = {
                 'epoch': epoch,
@@ -131,6 +130,21 @@ def train(train_loader, model, scheduler, optimizer, epoch, args):
             }
             for key, value in ans.items():
                 print('    {:15s}: {}'.format(str(key), value))
+              
+            # My copy 
+            state = {
+              'epoch': epoch,
+              'parser': args,
+              'state_dict': get_state_dict(model)
+            }
+            torch.save(
+                state,
+                os.path.join(
+                args.save_folder,
+                args.dataset,
+                args.network,
+                "checkpoint_{}_{}.pth".format(epoch,iteration)))
+            
         iteration += 1
     scheduler.step(np.mean(total_loss))
     result = {
