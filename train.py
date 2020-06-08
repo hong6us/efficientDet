@@ -161,7 +161,7 @@ def test(dataset, model, epoch, args):
     model.eval()
     model.is_training = False
     with torch.no_grad():
-        if(args.dataset in ['VOC','HandiParkData'):
+        if(args.dataset in ['VOC','HandiParkData']):
             evaluate(dataset, model)
         else:
             evaluate_coco(dataset, model)
