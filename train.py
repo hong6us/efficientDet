@@ -35,7 +35,7 @@ from eval import evaluate
 
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
-parser.add_argument('--dataset', default='VOC', choices=['VOC', 'COCO'],
+parser.add_argument('--dataset', default='VOC', choices=['VOC', 'COCO', 'HandiParkData'],
                     type=str, help='VOC or COCO')
 parser.add_argument(
     '--dataset_root',
