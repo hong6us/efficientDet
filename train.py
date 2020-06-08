@@ -31,7 +31,7 @@ from models.efficientdet import EfficientDet
 from models.losses import FocalLoss
 from datasets import VOCDetection, HandiParkDetection, get_augumentation, detection_collate, Resizer, Normalizer, Augmenter, collater
 from utils import EFFICIENTDET, get_state_dict
-from eval import evaluate
+from eval import evaluate, evaluate_hp
 
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
@@ -161,8 +161,10 @@ def test(dataset, model, epoch, args):
     model.eval()
     model.is_training = False
     with torch.no_grad():
-        if(args.dataset in ['VOC','HandiParkData']):
+        if(args.dataset == 'VOC'):
             evaluate(dataset, model)
+        elif(args.dataset == 'HandiParkData'):
+            evaluate_hp(dataset, model)
         else:
             evaluate_coco(dataset, model)
 
