@@ -57,9 +57,7 @@ class HandiParkDetection(data.Dataset):
         img_id = self.ids[index]
         annofile = os.path.join(self._annopath, img_id+".xml")
         imgfile = os.path.join(self._imgpath, img_id+".jpg")
-        print(annofile)
         target = ET.parse(annofile).getroot()
-        print(target)
         img = cv2.imread(imgfile)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = img.astype(np.float32)/255.
