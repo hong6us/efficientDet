@@ -29,7 +29,7 @@ from torch.utils.data import DataLoader
 
 from models.efficientdet import EfficientDet
 from models.losses import FocalLoss
-from datasets import VOCDetection, get_augumentation, detection_collate, Resizer, Normalizer, Augmenter, collater
+from datasets import VOCDetection, HandiParkDetection, get_augumentation, detection_collate, Resizer, Normalizer, Augmenter, collater
 from utils import EFFICIENTDET, get_state_dict
 from eval import evaluate
 
@@ -193,6 +193,12 @@ def main_worker(gpu, ngpus_per_node, args):
             [Normalizer(), Augmenter(), Resizer()]))
         valid_dataset = VOCDetection(root=args.dataset_root, image_sets=[(
             '2007', 'test')], transform=transforms.Compose([Normalizer(), Resizer()]))
+        args.num_class = train_dataset.num_classes()
+    elif(args.dataset == 'HandiParkData'):
+        train_dataset = HandiParkDetection(root=args.dataset_root, transform=transforms.Compose(
+            [Normalizer(), Augmenter(), Resizer()]))
+        valid_dataset = HandiParkDetection(root=args.dataset_root, image_set="", 
+            transform=transforms.Compose([Normalizer(), Resizer()]))
         args.num_class = train_dataset.num_classes()
     elif(args.dataset == 'COCO'):
         train_dataset = CocoDataset(
