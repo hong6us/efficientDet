@@ -64,6 +64,7 @@ class HandiParkDetection(data.Dataset):
         height, width, channels = img.shape
 
         if self.target_transform is not None:
+            print(annofile)
             target = self.target_transform(target, width, height)
         target = np.array(target)
         sample = {'img': img, 'annot': target}
