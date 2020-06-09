@@ -72,16 +72,16 @@ class HandiParkDetection(data.Dataset):
             sample = self.transform(sample)
         return sample
 
-        # bbox = target[:, :4]
-        # labels = target[:, 4]
+        bbox = target[:, :4]
+        labels = target[:, 4]
 
-        # if self.transform is not None:
-        #     annotation = {'image': img, 'bboxes': bbox, 'category_id': labels}
-        #     augmentation = self.transform(**annotation)
-        #     img = augmentation['image']
-        #     bbox = augmentation['bboxes']
-        #     labels = augmentation['category_id']
-        # return {'image': img, 'bboxes': bbox, 'category_id': labels}
+        if self.transform is not None:
+            annotation = {'image': img, 'bboxes': bbox, 'category_id': labels}
+            augmentation = self.transform(**annotation)
+            img = augmentation['image']
+            bbox = augmentation['bboxes']
+            labels = augmentation['category_id']
+        return {'image': img, 'bboxes': bbox, 'category_id': labels}
 
     def __len__(self):
         return len(self.ids)
