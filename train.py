@@ -164,7 +164,7 @@ def test(dataset, model, epoch, args):
         if(args.dataset == 'VOC'):
             evaluate(dataset, model)
         elif(args.dataset == 'HandiParkData'):
-            evaluate_hp(dataset, model)
+            evaluate(dataset, model)
         else:
             evaluate_coco(dataset, model)
 
