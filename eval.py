@@ -255,8 +255,16 @@ def evaluate(
     print('avg mAP: {}'.format(np.mean(avg_mAP)))
     return np.mean(avg_mAP), average_precisions
 
-def evaluate_hp(dataset, model):
+# Added 
+def evaluate_hp(dataset,
+    model,
+    iou_threshold=0.5,
+    score_threshold=0.05,
+    max_detections=100,
+    save_path=None):
+  
     results = _get_detections(dataset, model)
+    all_annotations = _get_annotations(dataset)
     print("eval results are caculated but not analyzing yet")
 
 def evaluate_coco(dataset, model, threshold=0.05):
