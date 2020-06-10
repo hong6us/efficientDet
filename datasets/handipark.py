@@ -94,7 +94,8 @@ class HandiParkDetection(data.Dataset):
 
     def load_annotations(self, index):
         img_id = self.ids[index]
-        anno = ET.parse(self._annopath % img_id).getroot()
+        annofile = os.path.join(self._annopath, img_id+".xml")
+        anno = ET.parse(annofile).getroot()
         gt = self.target_transform(anno, 1, 1)
         gt = np.array(gt)
         return gt
