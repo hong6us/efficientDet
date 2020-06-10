@@ -297,7 +297,7 @@ def main_worker(gpu, ngpus_per_node, args):
     for epoch in range(args.start_epoch, args.num_epoch):
         train(train_loader, model, scheduler, optimizer, epoch, args)
 
-        if (epoch + 1) % 5 == 0:
+        if (epoch + 1) % 1 == 0:
             test(valid_dataset, model, epoch, args)
 
         state = {
