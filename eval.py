@@ -255,7 +255,7 @@ def evaluate(
     print('avg mAP: {}'.format(np.mean(avg_mAP)))
     return np.mean(avg_mAP), average_precisions
 
-# Added 
+# Handipark eval
 def evaluate_hp(dataset,
     model,
     iou_threshold=0.5,
